@@ -5,10 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
-<body>
+<body onload="initClock()">
     
     <div class="ct" style="text-align: center;">
         <h3>Sorry the link is not available</h3>
+
+
+
+
+
+        
+
+
+
+
+        <div class="datatime">
+
+            <div class="data">
+                <span id="dayname">Day</span>,
+                <span id="month">Month</span>,
+                <span id="daynum">00</span>,
+                <span id="year">year</span>
+            </div>
+
+            <div class="time">
+                <span id="hours">00</span>:
+                <span id="minutes">00</span>:
+                <span id="seconds">00</span>
+                <span></span>
+            </div>
+
+        </div>
+        <script>
+
+            function updateClock(){
+                var now =  new Date();
+                //console.log(now)
+                var day=now.getDay();
+                var month = now.getMonth();
+                var date=now.getDate();
+                var year = now.getFullYear();
+                let hours=now.getHours();
+                let min = now.getMinutes();
+                let sec = now.getSeconds();
+                //console.log(day)
+                
+                const months = [
+                            "January",
+                            "February",
+                            "March",
+                            "April",
+                            "May",
+                            "June",
+                            "July",
+                            "August",
+                            "September",
+                            "October",
+                            "November",
+                            "December"
+                            ];
+                const days = [
+                        "Sunday",
+                        "Monday",
+                        "Tuesday",
+                        "Wednesday",
+                        "Thursday",
+                        "Friday",
+                        "Saturday"
+                        ];
+                const values=[days[day],months[month],date,year,hours,min,sec];
+
+                const ids =["dayname","month","daynum","year","hours","minutes","seconds"]
+
+                for(let i=0;i<ids.length;i++){
+                    document.getElementById(ids[i]).firstChild.nodeValue=values[i];
+                }
+
+            }
+
+            function initClock(){
+                updateClock();
+                window.setInterval("updateClock()",1);
+            }
+        </script>
 
 
 
